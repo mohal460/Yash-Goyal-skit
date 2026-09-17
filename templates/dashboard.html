@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard | Café Rewards</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="bg-gray-100 font-sans">
+    <!-- Navbar -->
+    <nav class="bg-blue-600 text-white p-4 flex justify-between items-center shadow">
+        <h1 class="text-xl font-bold">Café POS Counter</h1>
+        <button onclick="logout()" class="bg-red-500 px-4 py-2 rounded hover:bg-red-600 text-sm">Logout</button>
+    </nav>
+
+    <div class="max-w-6xl mx-auto p-6 mt-6 bg-white rounded shadow">
+        
+        <!-- Controls: Search & Add Member -->
+        <div class="flex justify-between mb-4">
+            <div class="flex gap-2 w-1/2">
+                <input type="text" id="searchInput" placeholder="Search phone or name..." class="w-full border p-2 rounded" onkeyup="if(event.key === 'Enter') handleSearch()">
+                <button onclick="handleSearch()" class="bg-gray-800 text-white px-4 py-2 rounded">Search</button>
+            </div>
+            <div class="flex gap-2 border p-2 rounded bg-gray-50">
+                <input type="text" id="newPhone" placeholder="Phone" class="border p-1 rounded w-32 text-sm">
+                <input type="text" id="newName" placeholder="Name" class="border p-1 rounded w-32 text-sm">
+                <button onclick="createMember()" class="bg-green-600 text-white px-3 py-1 rounded text-sm hover:bg-green-700">Add Customer</button>
+            </div>
+        </div>
+
+        <!-- Data Table -->
+        <table class="w-full text-left border-collapse">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="p-3 border-b">Phone</th>
+                    <th class="p-3 border-b cursor-pointer hover:bg-gray-300" onclick="toggleSort('name')">Name ↕</th>
+                    <th class="p-3 border-b">Tier</th>
+                    <th class="p-3 border-b cursor-pointer hover:bg-gray-300" onclick="toggleSort('points')">Live Balance ↕</th>
+                    <th class="p-3 border-b">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="membersTable">
+                <!-- Rows injected by JavaScript -->
+            </tbody>
+        </table>
+
+        <!-- Pagination -->
+        <div class="mt-4 flex justify-between items-center">
+            <p id="pageInfo" class="text-sm text-gray-600"></p>
+            <div class="flex gap-2">
+                <button onclick="prevPage()" class="bg-gray-300 px-3 py-1 rounded hover:bg-gray-400">Prev</button>
+                <button onclick="nextPage()" class="bg-gray-300 px-3 py-1 rounded hover:bg-gray-400">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script connection -->
+    <script src="/static/script.js"></script>
+</body>
+</html>
